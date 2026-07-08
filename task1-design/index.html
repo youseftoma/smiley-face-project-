@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>project</title>
+        <link rel="shortcut icon" href="images/logo.jpg" type="image/x-icon" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+
+    <body>
+        <header>
+            <div class="logosection">
+                <img
+                    class="app-brand-logo"
+                    src="images/smiley_face.png"
+                    alt="logo"
+                />
+                <p class="logoname">smiley face</p>
+            </div>
+
+            <div class="mobile-menu-wrapper">
+                <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
+                <label
+                    for="menu-toggle"
+                    class="menu-toggle-btn"
+                    aria-label="Toggle navigation"
+                    >☰</label
+                >
+
+                <div class="nav-container">
+                    <nav class="site-navigation">
+                        <a href="#top">Home</a>
+
+                        <div class="custom-dropmenu">
+                            <input
+                                type="checkbox"
+                                id="dropdown-toggle"
+                                class="dropdown-checkbox"
+                            />
+                            <label
+                                for="dropdown-toggle"
+                                class="dropmenu-trigger"
+                                >Channels</label
+                            >
+                            <ul>
+                                <li>Youtube</li>
+                                <li>Instagram</li>
+                                <li>Tiktok</li>
+                            </ul>
+                        </div>
+
+                        <a href="#contact">Contact</a>
+                        <a href="#About_us">About us</a>
+                    </nav>
+                    <div class="cartsection">
+                        <a href="../task2-logic/cart.html">🛒</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="banner-section">
+                <div>
+                    <h1>Discover <br />The Best Products <br />for you</h1>
+                    <h5>Trendy, Affordable</h5>
+                    <a
+                        class="btn btn-primary btn-lg"
+                        href="#benefits-bar"
+                        role="button"
+                        >Shop Now</a
+                    >
+                </div>
+                <img src="images/banner_img.png" alt="shoes" />
+            </section>
+
+            <section id="benefits-bar" class="benefits-section">
+                <p>🚙 Free Delivary</p>
+                <p>💰 Best Price</p>
+                <p>📞 24/7 support</p>
+            </section>
+
+            <section class="categories-bar">
+                <h2>Shop By Categories</h2>
+                <div
+                    class="btn-group"
+                    role="group"
+                    aria-label="Basic radio toggle button group"
+                >
+                    <input
+                        type="radio"
+                        class="btn-check"
+                        name="btnradio"
+                        id="all"
+                        autocomplete="off"
+                        checked
+                    />
+                    <label class="btn btn-outline-primary" for="all">All</label>
+
+                    <input
+                        type="radio"
+                        class="btn-check"
+                        name="btnradio"
+                        id="1"
+                        autocomplete="off"
+                        checked
+                    />
+                    <label class="btn btn-outline-primary" for="1"
+                        >Tshirt</label
+                    >
+
+                    <input
+                        type="radio"
+                        class="btn-check"
+                        name="btnradio"
+                        id="2"
+                        autocomplete="off"
+                    />
+                    <label class="btn btn-outline-primary" for="2">Shoes</label>
+
+                    <input
+                        type="radio"
+                        class="btn-check"
+                        name="btnradio"
+                        id="3"
+                        autocomplete="off"
+                    />
+                    <label class="btn btn-outline-primary" for="3"
+                        >Others</label
+                    >
+                </div>
+            </section>
+
+            <section class="shop-items">
+                <div
+                    class="card animated-card Tshirt-card"
+                    style="width: 18rem"
+                >
+                    <img
+                        src="images/onMachineTshirt.png"
+                        class="card-img-top"
+                        alt="work on my Machine Tshirt"
+                        loading="lazy"
+                    />
+                    <div class="card-body">
+                        <h4 class="card-title">work on my Machine Tshirt</h4>
+                        <h5 class="card-text">100$</h5>
+                        <a href="#" class="btn btn-outline-dark"
+                            >view details</a
+                        >
+                    </div>
+                </div>
+                <div
+                    class="card animated-card Tshirt-card"
+                    style="width: 18rem"
+                >
+                    <img
+                        src="images/coderTshirt.png"
+                        class="card-img-top"
+                        alt="coder Tshirt"
+                        loading="lazy"
+                    />
+                    <div class="card-body">
+                        <h4 class="card-title">coder Tshirt</h4>
+                        <h5 class="card-text">80$</h5>
+                        <a href="#" class="btn btn-outline-dark"
+                            >view details</a
+                        >
+                    </div>
+                </div>
+                <div
+                    class="card animated-card Tshirt-card"
+                    style="width: 18rem"
+                >
+                    <img
+                        src="images/yourWeaponTshirt.png"
+                        class="card-img-top"
+                        alt="your Weapon Tshirt"
+                        loading="lazy"
+                    />
+                    <div class="card-body">
+                        <h4 class="card-title">your Weapon Tshirt</h4>
+                        <h5 class="card-text">120$</h5>
+                        <a href="#" class="btn btn-outline-dark"
+                            >view details</a
+                        >
+                    </div>
+                </div>
+                <div
+                    class="card animated-card Tshirt-card"
+                    style="width: 18rem"
+                >
+                    <img
+                        src="images/cs50Tshirt.png"
+                        class="card-img-top"
+                        alt="cs50 Tshirt"
+                        loading="lazy"
+                    />
+                    <div class="card-body">
+                        <h4 class="card-title">cs50 Tshirt</h4>
+                        <h5 class="card-text">150$</h5>
+                        <a href="#" class="btn btn-outline-dark"
+                            >view details</a
+                        >
+                    </div>
+                </div>
+                <div class="card animated-card shoes-card" style="width: 18rem">
+                    <img
+                        src="images/blackAdidas.png"
+                        class="card-img-top"
+                        alt="black Adidas"
+                        loading="lazy"
+                    />
+                    <div class="card-body">
+                        <h4 class="card-title">black Adidas</h4>
+                        <h5 class="card-text">70$</h5>
+                        <a href="#" class="btn btn-outline-dark"
+                            >view details</a
+                        >
+                    </div>
+                </div>
+                <div class="card animated-card shoes-card" style="width: 18rem">
+                    <img
+                        src="images/whiteAdidas.png"
+                        class="card-img-top"
+                        alt="white Adidas"
+                        loading="lazy"
+                    />
+                    <div class="card-body">
+                        <h4 class="card-title">white Adidas</h4>
+                        <h5 class="card-text">80$</h5>
+                        <a href="#" class="btn btn-outline-dark"
+                            >view details</a
+                        >
+                    </div>
+                </div>
+                <div class="card animated-card other-card" style="width: 18rem">
+                    <img
+                        src="images/whiteCap.png"
+                        class="card-img-top"
+                        alt="white Cap"
+                        loading="lazy"
+                    />
+                    <div class="card-body">
+                        <h4 class="card-title">white Cap</h4>
+                        <h5 class="card-text">40$</h5>
+                        <a href="#" class="btn btn-outline-dark"
+                            >view details</a
+                        >
+                    </div>
+                </div>
+                <div class="card animated-card other-card" style="width: 18rem">
+                    <img
+                        src="images/orangeLeatherBag.png"
+                        class="card-img-top"
+                        alt="orange Leather Bag"
+                        loading="lazy"
+                    />
+                    <div class="card-body">
+                        <h4 class="card-title">orange Leather Bag</h4>
+                        <h5 class="card-text">2000$</h5>
+                        <a href="#" class="btn btn-outline-dark"
+                            >view details</a
+                        >
+                    </div>
+                </div>
+                <div class="card animated-card other-card" style="width: 18rem">
+                    <img
+                        src="images/blackLeatherBag.png"
+                        class="card-img-top"
+                        alt="black Leather Bag"
+                        loading="lazy"
+                    />
+                    <div class="card-body">
+                        <h4 class="card-title">black Leather Bag</h4>
+                        <h5 class="card-text">1200$</h5>
+                        <a href="#" class="btn btn-outline-dark"
+                            >view details</a
+                        >
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer id="About_us">
+            <div class="site-footer-layout">
+                <div>
+                    <div class="logosection">
+                        <img
+                            class="app-brand-logo"
+                            src="images/smiley_face.png"
+                            alt="logo"
+                            loading="lazy"
+                        />
+                        <p class="logoname">smiley face</p>
+                    </div>
+                    <h4>
+                        this is the slogan Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit.
+                    </h4>
+                    <nav class="site-footer-links">
+                        <a href="">
+                            <img
+                                src="images/youtube.png"
+                                alt="Visit YouTube"
+                                loading="lazy"
+                            />
+                        </a>
+                        <a href="">
+                            <img
+                                src="images/instagram.jpg"
+                                alt="Visit Instagram"
+                                loading="lazy"
+                            />
+                        </a>
+                        <a href="">
+                            <img
+                                src="images/tiktok.jpg"
+                                alt="Visit Tiktok"
+                                loading="lazy"
+                            />
+                        </a>
+                    </nav>
+                </div>
+                <div>
+                    <h3>Contact & Info</h3>
+                    <ul>
+                        <li>
+                            Email:
+                            <a href="mailto:info@smileyface.com"
+                                >info@smileyface.com</a
+                            >
+                        </li>
+                        <li>
+                            Phone:
+                            <a href="tel:+1234567890">+1 (234) 567-890</a>
+                        </li>
+                        <li><a href="#about">About Our Company</a></li>
+                        <li><a href="#faq">Frequently Asked Questions</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Legal & Compliance</h3>
+                    <ul>
+                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li>
+                            <a href="/terms-of-service">Terms of Service</a>
+                        </li>
+                        <li><a href="/cookie-settings">Cookie Settings</a></li>
+                    </ul>
+                </div>
+            </div>
+            <h5>&lt;&lt;&copy; smiley face company 2026&gt;&gt;</h5>
+        </footer>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
+
+<!-- 🖼️ Banner section with the sneakers and “Shop Now” button
+
+✅ Store benefits row (Free Delivery, Best Price Guaranteed, Easy Returns, 24/7 Support)
+
+🛍️ Shop by Categories (Shoes, Clothing, Bags, Accessories, Electronics)
+
+⭐ Featured Products (Sneakers, Hoodie, Watch, Backpack)
+
+🔦 Product Spotlight (detailed sneakers description + Add to Cart)
+
+💬 Customer Reviews -->
