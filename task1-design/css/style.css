@@ -276,31 +276,28 @@ footer .logosection {
   flex-direction: column;
   place-items: center;
   margin-top: 50px;
+  scroll-margin-top: 6rem;
 }
 
 .btn-group{
+  gap: 10px;
   width: 60%;
 }
-
-.btn-group label{
-  margin: 20px;
-}
-
 
 .shop-items{
   display: flex;
   flex-wrap: wrap;
+  place-content: center;
   gap: 15px;
-  margin: 20px;
+  margin: 20px 0;
 }
 
-
-.animated-card {
+.animated-card,.form-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
 
-.animated-card:hover {
+.animated-card:hover, .form-card:hover {
   transform: translateY(-10px); 
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
 }
@@ -313,7 +310,51 @@ footer .logosection {
   transform: scale(1.03);
 }
 
+.tshirt-card, .shoes-card, .other-card {
+  display: none;
+}
 
+body:has(#all:checked) .shop-items .card,
+body:has(#tshirts:checked) .shop-items .tshirt-card,
+body:has(#shoes:checked) .shop-items .shoes-card,
+body:has(#others:checked) .shop-items .other-card {
+  display: block;
+}
+
+.product-spotlight {
+  display: none ;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  scroll-margin-top: 10rem;
+}
+
+.product-spotlight-section h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #030532;
+}
+
+.product-spotlight:target {
+  display: block ;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.product-spotlight img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.product-spotlight img:hover {
+  transform: scale(1.03);
+}
+
+.form-card{
+  width: 80%;
+}
 
 /* ============================
    5. MEDIA QUERIES
