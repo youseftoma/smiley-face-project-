@@ -8,7 +8,7 @@ Task 2 (Logic):
 
 Folder organization:
 
-- cupmark-yousef-magdy/
+- cubmart-yousef-magdy/
     - task1-design/
         - index.html        # main design page
         - css/
