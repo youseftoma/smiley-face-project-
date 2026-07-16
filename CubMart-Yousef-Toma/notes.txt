@@ -1,0 +1,22 @@
+Name: yousef magdy abdo toma
+
+Task 1 (Design):
+- Goal: Create the visual identity and responsive layout for the Smiley Face project.
+
+Task 2 (Logic):
+- Goal: Implement interactive behaviors and simple cart functionality for the project.
+
+Folder organization:
+
+- CubMart-Yousef-Toma/
+    - task1-design/
+        - index.html        # main design page
+        - style.css       # all CSS and responsive rules
+        - images/           # design assets
+
+    - task2-logic/
+        - cart.html         # cart page HTML
+        - script.js         # JavaScript for cart logic
+
+
+
