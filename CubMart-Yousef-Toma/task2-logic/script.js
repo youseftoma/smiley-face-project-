@@ -165,7 +165,7 @@ do {
     if (cart.length === 0) {
         alert("Your cart is empty. No order was placed.");
     } else {
-        const codeInput = prompt("Do you have a promo code? Enter it here or leave blank to skip.");
+        const codeInput = prompt("Do you have a promo code? Enter it here or leave blank to skip.(50EGP, 100EGP, 150EGP)");
         if (codeInput !== null && codeInput.trim() !== "") {
             if (applyPromoCode(codeInput)) {
                 alert("Promo code applied successfully!");
