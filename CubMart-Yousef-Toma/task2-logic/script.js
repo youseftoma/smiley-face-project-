@@ -1,30 +1,33 @@
-let products_list = [
-    {id: 1, name: "laptop", price: 999.99, quantity: 10, category: "electronics"},
-    {id: 2, name: "smartphone", price: 699.99, quantity: 20, category: "electronics"},
-    {id: 3, name: "headphones", price: 199.99, quantity: 15, category: "electronics"},
-    {id: 4, name: "t-shirt", price: 19.99, quantity: 50, category: "clothing"},
-    {id: 5, name: "jeans", price: 49.99, quantity: 30, category: "clothing"},
-    {id: 6, name: "jacket", price: 89.99, quantity: 25, category: "clothing"},
-    {id: 7, name: "blender", price: 59.99, quantity: 10, category: "home appliances"},
-    {id: 8, name: "microwave", price: 149.99, quantity: 5, category: "home appliances"},
-    {id: 9, name: "toaster", price: 29.99, quantity: 8, category: "home appliances"}
+const catalog = [
+    { name: "Laptop", price: 999.99, category: "electronics", stock: 10 },
+    { name: "Smartphone", price: 699.99, category: "electronics", stock: 20 },
+    { name: "Headphones", price: 199.99, category: "electronics", stock: 15 },
+    { name: "T-Shirt", price: 19.99, category: "fashion", stock: 50 },
+    { name: "Jeans", price: 49.99, category: "fashion", stock: 30 },
+    { name: "Jacket", price: 89.99, category: "fashion", stock: 25 },
+    { name: "Blender", price: 59.99, category: "home", stock: 10 },
+    { name: "Microwave", price: 149.99, category: "home", stock: 5 },
+    { name: "Toaster", price: 29.99, category: "home", stock: 8 }
 ];
 
-let promo_codes = [
-    {code: "SAVE10", discount: 0.1},
-    {code: "SAVE20", discount: 0.2},
-    {code: "SAVE30", discount: 0.3}
+const promoCodes = [
+    { code: "50EGP", discount: 50 },
+    { code: "100EGP", discount: 100 },
+    { code: "150EGP", discount: 150 }
 ];
 
 let cart = [];
-let activeDiscount = 0;
+let activePromoDiscount = 0;
 const TAX_RATE = 0.14;
 
 function formatProducts(products) {
-    if (products.length === 0) return "No products found.";
-    let output = "--- Available Products ---\n";
+    if (products.length === 0) {
+        return "No products found in that category.";
+    }
+
+    let output = "--- CubMart Catalog ---\n";
     for (let product of products) {
-        output += `[ID: ${product.id}] ${product.name} - $${product.price.toFixed(2)} (Stock: ${product.quantity}) | Category: ${product.category}\n`;
+        output += `${product.name} - EGP ${product.price.toFixed(2)} | Category: ${product.category} | Stock: ${product.stock}\n`;
     }
     return output;
 }
@@ -37,171 +40,142 @@ function calculateSubtotal() {
     return subtotal;
 }
 
-function getDiscountRate() {
-    return activeDiscount;
+function getDiscountRate(subtotal) {
+    if (subtotal > 1000) {
+        return 0.15;
+    } else if (subtotal > 600) {
+        return 0.10;
+    } else if (subtotal > 300) {
+        return 0.05;
+    }
+    return 0;
 }
 
 function applyPromoCode(code) {
-    let promo = promo_codes.find(p => p.code === code.toUpperCase());
+    const promo = promoCodes.find(item => item.code.toUpperCase() === code.toUpperCase());
     if (promo) {
-        activeDiscount = promo.discount;
+        activePromoDiscount = promo.discount;
         return true;
     }
+
+    activePromoDiscount = 0;
     return false;
 }
 
 function calculateTax(subtotal, discountAmount) {
-    let taxableAmount = subtotal - discountAmount;
+    const taxableAmount = subtotal - discountAmount;
     return taxableAmount * TAX_RATE;
 }
 
 function generateReceipt() {
-    let subtotal = calculateSubtotal();
-    let discountRate = getDiscountRate();
-    let discountAmount = subtotal * discountRate;
-    let taxAmount = calculateTax(subtotal, discountAmount);
-    let finalTotal = subtotal - discountAmount + taxAmount;
+    const subtotal = calculateSubtotal();
+    const discountRate = getDiscountRate(subtotal);
+    const tierDiscount = subtotal * discountRate;
+    const totalDiscount = tierDiscount + activePromoDiscount;
+    const taxAmount = calculateTax(subtotal, totalDiscount);
+    const finalTotal = subtotal - totalDiscount + taxAmount;
 
-    let receipt = "--- Smiley Face Store Final Receipt ---\n";
+    let receipt = "--- CubMart Receipt ---\n";
     for (let item of cart) {
-        let itemTotal = item.price * item.quantity;
-        receipt += `${item.name} - $${item.price.toFixed(2)} x ${item.quantity} = $${itemTotal.toFixed(2)}\n`;
+        const itemTotal = item.price * item.quantity;
+        receipt += `${item.name} x${item.quantity} - EGP ${itemTotal.toFixed(2)}\n`;
     }
+
     receipt += "-----------------------------------\n";
-    receipt += `Subtotal: $${subtotal.toFixed(2)}\n`;
-    if (discountAmount > 0) {
-        receipt += `Promo Discount (${discountRate * 100}%): -$${discountAmount.toFixed(2)}\n`;
+    receipt += `Subtotal: EGP ${subtotal.toFixed(2)}\n`;
+
+    if (tierDiscount > 0) {
+        receipt += `Tier Discount (${(discountRate * 100).toFixed(0)}%): -EGP ${tierDiscount.toFixed(2)}\n`;
     }
-    receipt += `Tax (14%): $${taxAmount.toFixed(2)}\n`;
-    receipt += `Total Amount Paid: $${finalTotal.toFixed(2)}\n\n`;
-    receipt += "Thank you for shopping with smiley face store! 😊";
-    
+
+    if (activePromoDiscount > 0) {
+        receipt += `Promo Discount: -EGP ${activePromoDiscount.toFixed(2)}\n`;
+    }
+
+    receipt += `Tax (14%): EGP ${taxAmount.toFixed(2)}\n`;
+    receipt += `Grand Total: EGP ${finalTotal.toFixed(2)}\n\n`;
+    receipt += "Thank you for shopping at CubMart!";
+
     return receipt;
 }
 
-while (true) {
-    let menu = "Welcome to smiley face store! 🛒\nPlease select an option:\n\n" +
-               "1. Display all products\n" +
-               "2. Display products by category\n" +
-               "3. Search for a product by name\n" +
-               "4. Add products to the cart\n" +
-               "5. Apply promo code\n" +
-               "6. View cart\n" +
-               "7. Checkout (Generate Receipt)\n" +
-               "8. Exit Store entirely\n\n" +
-               "Press Cancel or choose 8 to completely close application.";
-               
-    let rawChoice = prompt(menu);
-    
-    if (rawChoice === null || Number(rawChoice) === 8) {
-        if (confirm("Are you sure you want to shut down the system and exit?")) {
+do {
+    cart = [];
+    activePromoDiscount = 0;
+
+    const browseCategory = prompt("Which category would you like to browse? (electronics, fashion, home)");
+    if (browseCategory !== null) {
+        const selectedCategory = browseCategory.trim().toLowerCase();
+        const filteredProducts = catalog.filter(product => product.category.toLowerCase() === selectedCategory);
+        alert(formatProducts(filteredProducts));
+    }
+
+    let keepOrdering = true;
+    while (keepOrdering) {
+        const productName = prompt("Enter a product name to add to your order. Type 'done' when finished.");
+
+        if (productName === null) {
             break;
-        } else {
+        }
+
+        if (productName.trim().toLowerCase() === "done") {
+            keepOrdering = false;
+            break;
+        }
+
+        const product = catalog.find(item => item.name.toLowerCase() === productName.trim().toLowerCase());
+
+        if (!product) {
+            alert("That product is not available in the catalog. Please try again.");
             continue;
         }
+
+        const quantityInput = prompt(`How many ${product.name} would you like to add? (Available stock: ${product.stock})`);
+        if (quantityInput === null) {
+            continue;
+        }
+
+        const quantity = Number(quantityInput);
+        if (!Number.isInteger(quantity) || quantity <= 0) {
+            alert("Please enter a valid whole number greater than zero.");
+            continue;
+        }
+
+        if (quantity > product.stock) {
+            alert("Not enough stock available. Please choose a smaller quantity.");
+            continue;
+        }
+
+        product.stock -= quantity;
+
+        const existingItem = cart.find(item => item.name.toLowerCase() === product.name.toLowerCase());
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            cart.push({
+                name: product.name,
+                price: product.price,
+                quantity: quantity
+            });
+        }
+
+        alert(`Added ${quantity} x ${product.name} to your cart.`);
     }
 
-    let choice = Number(rawChoice);
-
-    if (choice === 1) {
-        alert(formatProducts(products_list));
-    } 
-    else if (choice === 2) {
-        let category = prompt("Enter the category (electronics, clothing, home appliances): ");
-        if (category !== null) {
-            category = category.toLowerCase();
-            let filteredProducts = products_list.filter(product => product.category.toLowerCase() === category);
-            alert(formatProducts(filteredProducts));
-        }
-    } 
-    else if (choice === 3) {
-        let searchName = prompt("Enter product name to search: ");
-        if (searchName !== null) {
-            searchName = searchName.toLowerCase();
-            let foundProducts = products_list.filter(product => product.name.toLowerCase().includes(searchName));
-            alert(formatProducts(foundProducts));
-        }
-    } 
-    else if (choice === 4) {
-        let productname = prompt("Enter the name of the product you want to add: ");
-        if (productname !== null) {
-            productname = productname.toLowerCase();
-            let product = products_list.find(p => p.name === productname);
-
-            if (!product) {
-                alert("Product not found!");
-            } else {
-                let quantityInput = prompt(`How many "${product.name}" would you like to add?\n(Available Stock: ${product.quantity}): `);
-                if (quantityInput !== null) {
-                    let quantityToAdd = Number(quantityInput);
-                    
-                    if (quantityToAdd <= 0 || isNaN(quantityToAdd)) {
-                        alert("Please enter a valid quantity.");
-                    } else if (quantityToAdd > product.quantity) {
-                        alert("Not enough stock available!");
-                    } else {
-                        product.quantity -= quantityToAdd;
-
-                        let cartItem = cart.find(item => item.name === productname);
-                        if (cartItem) {
-                            cartItem.quantity += quantityToAdd;
-                        } else {
-                            cart.push({
-                                id: product.id,
-                                name: product.name,
-                                price: product.price,
-                                quantity: quantityToAdd
-                            });
-                        }
-                        alert(`Successfully added ${quantityToAdd}x ${product.name} to your cart!`);
-                    }
-                }
-            }
-        }
-    } 
-    else if (choice === 5) {
-        let codeInput = prompt("Enter promo code: ");
-        if (codeInput !== null) {
+    if (cart.length === 0) {
+        alert("Your cart is empty. No order was placed.");
+    } else {
+        const codeInput = prompt("Do you have a promo code? Enter it here or leave blank to skip.");
+        if (codeInput !== null && codeInput.trim() !== "") {
             if (applyPromoCode(codeInput)) {
-                alert(`Success! Promo code applied! (${getDiscountRate() * 100}% OFF)`);
+                alert("Promo code applied successfully!");
             } else {
-                alert("Invalid promo code.");
+                alert("Invalid promo code. No extra discount was applied.");
             }
-        }
-    } 
-    else if (choice === 6) {
-        if (cart.length === 0) {
-            alert("Your cart is empty. 🛒");
-        } else {
-            let cartOutput = "--- Your Cart ---\n";
-            for (let item of cart) {
-                let itemTotal = item.price * item.quantity;
-                cartOutput += `${item.name} - $${item.price.toFixed(2)} x ${item.quantity} = $${itemTotal.toFixed(2)}\n`;
-            }
-            let currentSubtotal = calculateSubtotal();
-            let currentDiscount = currentSubtotal * getDiscountRate();
-            
-            cartOutput += `\nSubtotal: $${currentSubtotal.toFixed(2)}`;
-            if (currentDiscount > 0) {
-                cartOutput += `\nActive Discount: -$${currentDiscount.toFixed(2)}`;
-            }
-            alert(cartOutput);
-        }
-    } 
-    else if (choice === 7) {
-        if (cart.length === 0) {
-            alert("Your cart is empty. You cannot check out yet!");
-            continue;
         }
 
-        if (confirm("Are you ready to finalize your transaction and checkout?")) {
-            alert(generateReceipt());
-            cart = [];
-            activeDiscount = 0;
-            alert("Order processed successfully!\nStarting a brand new order session... 🔄");
-        }
-    } 
-    else {
-        alert("Invalid option. Please choose a number between 1 and 8.");
+        alert(generateReceipt());
     }
-}
+} while (confirm("Would you like to place another order?"));
+
+alert("Thank you for shopping at CubMart!");
